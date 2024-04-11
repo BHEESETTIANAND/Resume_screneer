@@ -50,13 +50,13 @@ if uploaded_file is not None:
         resume_text = resume_bytes.decode('utf-8')
     except UnicodeDecodeError:
         resume_text = resume_bytes.decode('latin-1')
-cleaned_resume = clean_resume(resume_text)
-input_features = tfidfd.transform([cleaned_resume])
-prediction_id = clf.predict(input_features)[0]
-st.write(prediction_id)
+    cleaned_resume = clean_resume(resume_text)
+    input_features = tfidfd.transform([cleaned_resume])
+    prediction_id = clf.predict(input_features)[0]
+    st.write(prediction_id)
 
         # Map category ID to category name
-category_mapping = {
+    category_mapping = {
   15: "Java Developer",
   23: "Testing",
   8: "DevOps Engineer",
@@ -83,8 +83,8 @@ category_mapping = {
   5: "Civil Engineer",
   0: "Advocate",
 }
-category_name = category_mapping.get(prediction_id, "Unknown")
-st.write("Predicted Category:", category_name)
+    category_name = category_mapping.get(prediction_id, "Unknown")
+    st.write("Predicted Category:", category_name)
 
 
 
