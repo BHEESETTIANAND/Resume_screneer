@@ -42,12 +42,14 @@ with st.sidebar:
 st.title("Resume Screening App")
 uploaded_file = st.file_uploader('Upload Resume', type=['txt','pdf'])
 if uploaded_file is not None:
+    
     resume_text=""
-  try:
-    resume_bytes = uploaded_file.read()
-    resume_text = resume_bytes.decode('utf-8')
-  except UnicodeDecodeError:
-    resume_text = resume_bytes.decode('latin-1')
+    try:
+        
+        resume_bytes = uploaded_file.read()
+        resume_text = resume_bytes.decode('utf-8')
+    except UnicodeDecodeError:
+        resume_text = resume_bytes.decode('latin-1')
 cleaned_resume = clean_resume(resume_text)
 input_features = tfidfd.transform([cleaned_resume])
 prediction_id = clf.predict(input_features)[0]
